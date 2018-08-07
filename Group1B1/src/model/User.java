@@ -1,17 +1,17 @@
 package model;
 
 public class User {
-
-	int id;
-	String firstName;
-	String lastName;
-	int phoneNumber;
-	String email;
-	String password;
-	String addressLine1;
-	String addressLine2;
-	String state;
-	int pincode;
+	
+	private int id;
+	private String firstName;
+	private String lastName;
+	private int phone;
+	private String email;
+	private String password;
+	private String addressLine1;
+	private String addressLine2;
+	private String state;
+	private int pincode;
 	
 	public int getId() {
 		return id;
@@ -31,11 +31,11 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public int getPhoneNumber() {
-		return phoneNumber;
+	public int getPhone() {
+		return phone;
 	}
-	public void setPhoneNumber(int phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setPhone(int phone) {
+		this.phone = phone;
 	}
 	public String getEmail() {
 		return email;
@@ -73,4 +73,5 @@ public class User {
 	public void setPincode(int pincode) {
 		this.pincode = pincode;
 	}
+
 }

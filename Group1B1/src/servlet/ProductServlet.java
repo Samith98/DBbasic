@@ -11,17 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Product;
-import model.User;
-
 
 @WebServlet("/ProductServlet")
 public class ProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
     public ProductServlet() {
         super();
-        }
+    }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -34,6 +31,11 @@ public class ProductServlet extends HttpServlet {
 		
 		out.write(productJson);
 		
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 	}
 
 }
