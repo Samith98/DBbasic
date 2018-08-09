@@ -54,4 +54,24 @@ public class JSONManager {
 		return productArray.toString();
 
 	}
+		
+		public JsonObject userToJson(User user) {
+
+			JsonObject userJsonObj = new JsonObject();
+
+			userJsonObj.addProperty("id", user.getId());
+			userJsonObj.addProperty("firstName", user.getFirstName());
+			userJsonObj.addProperty("lastName", user.getLastName());
+			userJsonObj.addProperty("phoneNumber", user.getPhoneNumber());
+			userJsonObj.addProperty("email", user.getEmail());
+			userJsonObj.addProperty("password", user.getPassword());
+			userJsonObj.addProperty("addressLine1", user.getAddressLine1());
+			userJsonObj.addProperty("addressLine2", user.getAddressLine2());
+			userJsonObj.addProperty("state", user.getState());
+			userJsonObj.addProperty("pincode", user.getPincode());
+
+			return userJsonObj;
+
+		}
+		
 }

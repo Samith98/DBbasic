@@ -1,6 +1,7 @@
 package servlet;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +17,9 @@ public class DB {
 
 	List<User> userList;
 	List<Product> productList;
+	Connection con4;
+	Statement statement;
+	PreparedStatement ps5;
 
 	public Connection getConnection() {
 		Connection con = null;
@@ -140,13 +144,12 @@ public int login(String email, String password){
 		
 		int j = 0;
 		Connection con3 = getConnection();
-		int i=3;
 		
 		try {
 			
-			PreparedStatement ps1 = con3.prepareStatement("insert into user values(?,?,?,?,?,?,?,?,?)");
+			PreparedStatement ps1 = con3.prepareStatement("insert into user values(id,?,?,?,?,?,?,?,?,?)");
 			
-//			ps1.setString(1, i);
+	
 			ps1.setString(1, first_name);
 			ps1.setString(2, last_name);
 			ps1.setString(3, phone);
@@ -170,5 +173,64 @@ public int login(String email, String password){
 		return j;
 		
 	}
+public List<Product> getAllProduct(){
+		
+		Connection con1 = getConnection();
+		List<Product> allProductList;
 
+		try {
+			Statement statement = con1.createStatement();
+
+			ResultSet productSet = statement.executeQuery("select * from product_table");
+
+			allProductList = new ArrayList<Product>();
+
+			while (productSet.next()) {
+
+				Product product = new Product();
+
+				product.setId(productSet.getInt(1));
+				product.setName(productSet.getString(2));
+				product.setdiscription(productSet.getString(3));
+				product.setprice(productSet.getInt(4));
+				product.setcategory(productSet.getString(5));
+
+				allProductList.add(product);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		System.out.println(allProductList);
+		return allProductList;
+	
+	}
+
+public User getUserByEmail(String email) {
+	User user = new User();
+	con4 = getConnection();
+	try {
+		ps5 = con4.prepareStatement("select * from user where email=?");
+		ps5.setString(1, email);
+		ResultSet userSet = ps5.executeQuery();
+		while (userSet.next()) {
+			user.setId(userSet.getInt(1));
+			user.setFirstName(userSet.getString(2));
+			user.setLastName(userSet.getString(3));
+			user.setPhoneNumber(userSet.getInt(4));
+			user.setEmail(email);
+			user.setAddressLine1(userSet.getString(7));
+			user.setAddressLine2(userSet.getString(8));
+			user.setState(userSet.getString(9));
+			user.setPincode(userSet.getInt(10));
+		}
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+
+	return user;
+
+}
 }

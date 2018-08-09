@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
+import model.User;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -51,11 +54,6 @@ public class LoginServlet extends HttpServlet {
 		
 		int result = db.login(email, password);
 		
-		if(result!=0){
-			System.out.println("Correct");
-		} else {
-			System.out.println("Incorrect");
-		}
 		
 //--------------Send result in Json format------------------------------------//
 		
@@ -65,8 +63,14 @@ public class LoginServlet extends HttpServlet {
 		
 		
 		if (result == 1) {
+			User user = db.getUserByEmail(email);
+			
+			JSONManager jsonManager = new JSONManager();
+			JsonObject jsonObj = jsonManager.userToJson(user);
+			
 			messageObj = new JsonObject();
 			messageObj.addProperty("message", 1);
+			messageObj.add("user",new Gson().toJsonTree(jsonObj));
 			out.write(messageObj.toString());
 			System.out.println("Correct");
 		} else {
