@@ -102,7 +102,7 @@ public class DB {
 					allProductList.add(product);
 				}
 
-			} catch (SQLException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 				return null;
 			}
@@ -128,7 +128,7 @@ public class DB {
 				i++;
 			}
 			
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			
 			e.printStackTrace();
 			
@@ -162,7 +162,7 @@ public class DB {
 			
 			System.out.println("Registration Successful");
 			
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			
 			e.printStackTrace();
 			

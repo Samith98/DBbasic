@@ -43,13 +43,13 @@ public class RegisterServlet extends HttpServlet {
 		
 		DB dbObj = new DB();
 		
-		String first_name = regObj.get("first_name").getAsString();
-		String last_name = regObj.get("last_name").getAsString();
+		String first_name = regObj.get("firstName").getAsString();
+		String last_name = regObj.get("lastName").getAsString();
 		String phone = regObj.get("phone").getAsString();
-		String email = regObj.get("eamil").getAsString();
+		String email = regObj.get("email").getAsString();
 		String password = regObj.get("password").getAsString();
-		String address_line1 = regObj.get("address_line1").getAsString();
-		String address_line2 = regObj.get("address_line2").getAsString();
+		String address_line1 = regObj.get("addressLine1").getAsString();
+		String address_line2 = regObj.get("addressLine2").getAsString();
 		String state = regObj.get("state").getAsString();
 		String pincode = regObj.get("pincode").getAsString();
 		
